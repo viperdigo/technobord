@@ -1,0 +1,41 @@
+
+#cabecalho {
+	background: white; /* Digg Blue */
+	min-height: 75px;
+	padding: 0 10px;
+	font-size: 1.3em;
+	font-weight: bold;
+	}
+	#lado-direito {
+		float: right;
+		padding-top: 37px;
+		}
+		#lado-direito img {
+			border: 1px solid black;
+			vertical-align: middle;
+		}
+		#lado-direito a {
+			color: black;
+			border-left: 1px solid black;
+			height: 10px;
+			padding-left: 10px;
+			}
+			#lado-direito a.first {
+				border: none;
+				padding: 0;
+			}
+			form#main-search {
+				display: inline;
+				position: relative;
+				padding-right: 10px;
+				}
+				form#main-search label {
+					display: none;
+				}
+				#search-button {
+					position: absolute;
+					right: 0px;
+					top: -6px;
+				}
+				
+                                

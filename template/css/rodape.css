@@ -1,0 +1,18 @@
+
+/* Rodapé
+----------------------------------------------------------------------------------------------------*/
+
+#rodape {
+	background: white;
+	padding: 5px;
+	color: black;
+	font-size: 12px;
+	}
+	#rodape a {
+		color: black;
+	}
+        #rodape hr{
+            margin-top: 10px;
+            border: 1px solid #E5E5E5;
+            height: 3px;                
+        }

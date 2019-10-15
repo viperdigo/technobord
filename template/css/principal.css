@@ -1,0 +1,41 @@
+/* DIV principal
+----------------------------------------------------------------------------------------------------*/
+
+* { margin: 0; padding: 0; }
+html { overflow-y: scroll; }
+body { 
+	font: 62.5% Arial, Helvetica, sans-serif;
+	background: white;
+        min-width: 960px;
+        font-size: 11px;
+        height: auto;
+        padding-bottom: 20px;
+        
+}
+
+ul { list-style: none inside; }
+p { font-size: 1.2em; line-height: 1.2em; margin-bottom: 1.2em; }
+a img { border: none; }
+
+.floatleft { float: left; }
+.floatright { float: right; }
+.clear { clear: both; }
+
+a { 
+	text-decoration: none; 
+	outline: none;
+	color: #335588;
+	}
+	a:hover {
+		text-decoration: underline;
+	}
+
+#principal {
+	min-width: 960px; 
+	max-width: 960px; 
+	margin: 0 auto; padding: 0 10px;
+}
+
+input{
+    text-transform: uppercase;
+}
