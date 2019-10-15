@@ -1,57 +1,58 @@
-<?php                                                                               
+<?php
 
-    /**************************************************************************/    
-    /* Criado em: 14/06/2012 por                               */    
-    /* Descrição: Classe para executar as Querys do Programa T0005            */    
-    /**************************************************************************/    
+/**************************************************************************/
+/* Criado em: 14/06/2012 por                               */
+/* Descrição: Classe para executar as Querys do Programa T0005            */
 
-    class models_T0005 extends models                                               
-    {                                                                               
+/**************************************************************************/
 
-        public function __construct()                                               
-        {                                                                           
-            $conn = "";                                                               
-            parent::__construct($conn);                                             
-        }                                                                           
+class models_T0005 extends models
+{
 
-        public function inserir($tabela,$campos)                                    
-        {                                                                           
-            $insere = $this->exec($this->insere($tabela, $campos));                     
+    public function __construct()
+    {
+        $conn = "";
+        parent::__construct($conn);
+    }
 
-            //Mensagem                                                              
-            if($insere)                                                             
-                $this->mostraMensagem("", "Gravado com Sucesso!");                  
-            else                                                                    
-                $this->mostraMensagem("e", "Não foi possível gravar!");             
+    public function inserir($tabela, $campos)
+    {
+        $insere = $this->exec($this->insere($tabela, $campos));
 
-            return $insere;                                                         
-        }                                                                           
+        //Mensagem
+        if ($insere)
+            $this->mostraMensagem("", "Gravado com Sucesso!");
+        else
+            $this->mostraMensagem("e", "Não foi possível gravar!");
 
-        public function atualizar($tabela,$campos,$delim)                           
-        {                                                                           
-            $conn = "";                                                             
+        return $insere;
+    }
 
-            $altera = $this->exec($this->atualiza($tabela, $campos, $delim));       
+    public function atualizar($tabela, $campos, $delim)
+    {
+        $conn = "";
 
-            //Mensagem                                                              
-            if($altera)                                                             
-                $this->mostraMensagem("", "Alterado com Sucesso!");                 
-            else                                                                    
-                $this->mostraMensagem("e", "Não foi possível alterar!");            
+        $altera = $this->exec($this->atualiza($tabela, $campos, $delim));
 
-            return $altera;                                                         
-        }                                                                           
+        //Mensagem
+        if ($altera)
+            $this->mostraMensagem("", "Alterado com Sucesso!");
+        else
+            $this->mostraMensagem("e", "Não foi possível alterar!");
 
-        public function excluir($tabela, $delim)                                    
-        {                                                                           
-            $exclui = $this->exec($this->exclui($tabela, $delim));                      
+        return $altera;
+    }
 
-            return $exclui;                                                         
-        } 
-        
-        public function retornaDados($codigoFornecedor, $razao_social, $cnpj, $tp_pessoa)
-        {
-            $sql    =   "  SELECT T03.T003_codigo                CodigoFornecedor
+    public function excluir($tabela, $delim)
+    {
+        $exclui = $this->exec($this->exclui($tabela, $delim));
+
+        return $exclui;
+    }
+
+    public function retornaDados($codigoFornecedor = null, $razao_social = null, $cnpj = null, $tp_pessoa = null)
+    {
+        $sql = "  SELECT T03.T003_codigo                CodigoFornecedor
                                 , T10.T010_codigo                CodTpPessoaFornecedor
                                 , T10.T010_tipo                  TpPessoaFornecedor
                                 , T03.T003_razao_social          RazaoSocialFornecedor
@@ -71,22 +72,23 @@
                             JOIN t010_tp_pessoa T10 ON T03.T010_codigo = T10.T010_codigo
                        LEFT JOIN t011_contato   T11 ON T03.T011_codigo = T11.T011_codigo
                             WHERE 1    =   1";
-            
-            if (!empty($codigoFornecedor))
-                $sql    .=  " AND T03.T003_codigo       =       $codigoFornecedor   ";
-            
-            if (!empty($razao_social))
-                $sql    .=  " AND T03.T003_razao_social LIKE    '%$razao_social%'   ";
-            
-            if (!empty($cnpj))
-                $sql    .=  " AND T03.T003_cnpj         =       '$cnpj'             ";
-            
-            if (!empty($tp_pessoa))
-                $sql    .=  " AND T10.T010_codigo       =       $tp_pessoa          ";
-            
-            return $this->query($sql);            
-        }
+
+        if (!empty($codigoFornecedor))
+            $sql .= " AND T03.T003_codigo       =       $codigoFornecedor   ";
+
+        if (!empty($razao_social))
+            $sql .= " AND T03.T003_razao_social LIKE    '%$razao_social%'   ";
+
+        if (!empty($cnpj))
+            $sql .= " AND T03.T003_cnpj         =       '$cnpj'             ";
+
+        if (!empty($tp_pessoa))
+            $sql .= " AND T10.T010_codigo       =       $tp_pessoa          ";
+
+        return $this->query($sql);
+    }
 
 
-    }                                                                               
+}
+
 ?>

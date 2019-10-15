@@ -2,7 +2,7 @@
 //Instancia Classe
 $obj =   new models();
 //Array com Dados menu
-$menu=  $obj->menu($tipo, $grps);
+$menu=  $obj->menu();
 ?>
 <div id="menu">
     <div id="menu">

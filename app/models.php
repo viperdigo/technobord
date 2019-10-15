@@ -152,39 +152,49 @@ class models extends PDO
 
     private function validaData($data)
     {
-        $data = split("[-,/]", $data);
-        if(!checkdate($data[1], $data[0], $data[2]) and !checkdate($data[1], $data[2], $data[0]))
-        {
-            return false;
+        $data = explode("/", $data);
+        var_dump($data);die;
+        if($data) {
+            if (!checkdate($data[1], $data[0], $data[2]) and !checkdate($data[1], $data[2], $data[0])) {
+                return false;
+            }
         }
         return true;
     }
 
-    public function formataData($data)
+    public function formataData($data, $isDatetime = false)
     {
-        
-        if(empty($data))
-        {
-            $data   =   "null";
+        if (empty($data)) {
             return $data;
-            
         }
-            
-        if($this->validaData($data))
-        {
-            return implode(!strstr($data, '/') ? "/" : "-", array_reverse(explode(!strstr($data, '/') ? "-" : "/", $data)));
+
+        $dateTime = new DateTime();
+        if ($isDatetime) {
+            $arrDate = explode(' ', $data);
+            if ($arrDate[1])
+                return $dateTime::createFromFormat('d/m/Y', $data)->format('Y-m-d');
+            else
+                return $dateTime::createFromFormat('d/m/Y', $data)->format('Y-m-d');
+        } else {
+            return $dateTime::createFromFormat('d/m/Y', $data)->format('Y-m-d');
         }
+
+
     }
-    
-    //Formata data para as views sem Hora [Ex.: 01/10/2011]
-    public function formataDataView($data)
+
+    public function formataDataView($data, $withHour = false)
     {
-        $data = explode(" ",$data);
-        if($this->validaData($data[0]))
-        {
-            return implode(!strstr($data[0], '/') ? "/" : "-", array_reverse(explode(!strstr($data[0], '/') ? "-" : "/", $data[0])));
+        if (empty($data)) {
+            return $data;
         }
-    }    
+
+        $dateTime = new DateTime();
+        if ($withHour)
+            return $dateTime::createFromFormat('Y-m-d', $data)->format('d/m/Y');
+        else
+            return $dateTime::createFromFormat('Y-m-d', $data)->format('d/m/Y');
+
+    }
 
     private function verificaTipo($tabela,$campo)
     {
@@ -195,6 +205,17 @@ class models extends PDO
             $resultado = $coluna->getColumnMeta(0);
             return $resultado["native_type"];
         }
+    }
+
+    public function formataDataViewFix($data)
+    {
+        if (empty($data)) {
+            return $data;
+        }
+
+        $dateTime = new DateTime();
+        return $dateTime::createFromFormat('Y-m-d', $data)->format('d/m/Y');
+
     }
 
     public function retiraMascara($valor)
@@ -423,7 +444,7 @@ class models extends PDO
                             FROM T000_estrutura T1
                            WHERE T000_pai = " . $valores['T000_codigo'])->fetchAll(PDO::FETCH_ASSOC);
 
-            $superArray[$valores['T000_nome']] = $this->tem_filho($valores['T000_codigo'],$grps);
+            $superArray[$valores['T000_nome']] = $this->tem_filho($valores['T000_codigo']);
         }
         return $superArray;
     }
@@ -442,7 +463,7 @@ class models extends PDO
         {
             foreach ($menu as $campos=>$valores)
             {
-                $superArray[$valores['T000_nome']] = $this->tem_filho($valores['T000_codigo'],$tipo,$grps);
+                $superArray[$valores['T000_nome']] = $this->tem_filho($valores['T000_codigo']);
             }
             return $superArray;
         }

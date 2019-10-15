@@ -69,7 +69,9 @@ $QtdeDados  =   0                   ;
                         <option>2014</option>
                         <option>2015</option>
 						<option>2016</option>
-						<option selected>2017</option>
+						<option>2017</option>
+						<option>2018</option>
+						<option selected>2019</option>
                     </select>
                 </div>
                 <div class="grid_2">
@@ -91,10 +93,11 @@ $QtdeDados  =   0                   ;
         </thead> 
         <tbody> 
             <?php   foreach($dados    as $campos => $valores)
-                    {   $QtdeDados++; ?>
+                    {
+                        $QtdeDados++; ?>
                         <tr> 
                             <td class="id"><?php echo $obj->retornaFormatoCodigo($valores['CodigoRomaneio']);?> </td> 
-                            <td><?php echo $obj->formataData($valores['DataRomaneio']);?></td> 
+                            <td><?php echo $obj->formataDataViewFix($valores['DataRomaneio']);?></td>
                             <td><?php echo $obj->retornaFormatoCodigoNome($valores['CodigoCliente'], $valores['NomeCliente']);?></td> 
                             <td><?php echo "R$ ".number_format($valores['TotalRomaneio'], 2, ",", ".");?></td> 
                             <td class="acoes">
