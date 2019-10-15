@@ -28,10 +28,10 @@ define("NOME_SISTEMA","Technobord");
 
 /* Constantes de Ambiente (Produção, Teste e Extranet)*/
 define("SERVER_PRD","127.0.0.1");
-define("PRD_HOST","127.0.0.1");
-define("PRD_BD","technobord");
-define("PRD_USER","root");
-define("PRD_PASS","");
+define("PRD_HOST","us-cdbr-iron-east-05.cleardb.net");
+define("PRD_BD","heroku_69d5d4c53791faa");
+define("PRD_USER","bf6335bb24954b");
+define("PRD_PASS","d1c109e0");
 
 /* Caminho                                             */
 define("CAMINHO_FISICO", dirname(getcwd()));
