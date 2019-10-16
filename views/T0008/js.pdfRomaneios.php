@@ -121,7 +121,7 @@ class PDF extends FPDF
     }
 }
 
-$pdf      = new PDF("P");
+$pdf      = new PDF("L");
 $pdf->SetTitle("TESTE");
 $pdf->PrintChapter(1,'TESTE','');
 $pdf->Output();
