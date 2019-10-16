@@ -26,7 +26,7 @@ class PDF extends FPDF
 
         $dadosCliente = $obj->retornaClientes($this->codigoCliente);
 
-        $this->Image('template/css/images/logo.png', 5, 5, 30);
+        $this->Image('template/css/images/logo_relatorio.jpg', 5, 5, 30);
 
         //Fonte Divisor
         $this->SetFont('Arial', 'B', 20);
