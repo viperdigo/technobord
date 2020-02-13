@@ -33,7 +33,7 @@ else
                 class="ui-icon ui-icon-carat-2-n-s">  </span>Filtros</a>
     <a href="<?php echo ROUTER ?>home" class="ui-state-default ui-corner-all botoes-links"><span
                 class="ui-icon ui-icon-arrowreturnthick-1-w"></span>Voltar</a>
-    <a href="<?php echo ROUTER ?>js.pdfRomaneios&cliente=<?php echo $cliente ?>&dataInicio=<?php echo $dataInicio ?>&dataFim=<?php echo $dataFim ?>"
+    <a target="_blank" href="<?php echo ROUTER ?>js.pdfRomaneios&cliente=<?php echo $cliente ?>&dataInicio=<?php echo $dataInicio ?>&dataFim=<?php echo $dataFim ?>"
        class="ui-state-default ui-corner-all botoes-links"><span class="ui-icon ui-icon-print"></span>Imprimir</a>
     <hr>
 </div>
