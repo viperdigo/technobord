@@ -84,7 +84,9 @@ $currentYear = new DateTime('now')
 
                     foreach ($years as $year) {
                         $selected = '';
-                        if ($year == $currentYear->format('Y')) {
+                        if (!$_POST['T003_ano'] && $year == $currentYear->format('Y')) {
+                            $selected = 'selected';
+                        }elseif($year == $_POST['T003_ano']){
                             $selected = 'selected';
                         }
                         echo "<option value='$year' $selected>$year</option>";

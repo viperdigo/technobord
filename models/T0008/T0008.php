@@ -69,7 +69,7 @@ class models_T0008 extends models
                            WHERE 1=1";
 
         if (!empty($corte))
-            $sql .= "   AND T04.T004_corte LIKE '%$corte%'";
+            $sql .= "   AND T04.T004_corte = '$corte'";
         if (!empty($desenho))
             $sql .= "   AND T04.T004_desenho LIKE '%$desenho%'";
         if (!empty($codigoRomaneio))
