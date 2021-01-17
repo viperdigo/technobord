@@ -26,7 +26,7 @@ pipeline {
     stage('Building Web Image') {
           steps{
             script {
-              sh "docker build -f Dockerfile.nginx -t $imagenameWeb --build-arg ASSET_IMAGE=$imagenameApp ."
+              dockerImageWeb = docker.build(imagenameWeb, "-f Dockerfile.nginx","--build-arg ASSET_IMAGE=$imagenameApp")
             }
           }
         }
@@ -35,10 +35,9 @@ pipeline {
         script {
           docker.withRegistry( registryUrl, registryCredential ) {
             dockerImageApp.push("$BUILD_NUMBER")
+            dockerImageWeb.push("$BUILD_NUMBER")
             dockerImageApp.push('latest')
-
-            sh "docker push $imagenameWeb:$BUILD_NUMBER"
-            sh "docker push $imagenameWeb:latest"
+            dockerImageWeb.push('latest')
           }
         }
       }
