@@ -24,12 +24,12 @@ pipeline {
       }
     }
     stage('Building Web Image') {
-          steps{
-            script {
-              dockerImageWeb = docker.build(imagenameWeb, "-f Dockerfile.nginx","--build-arg ASSET_IMAGE=$imagenameApp")
-            }
-          }
+      steps{
+        script {
+          dockerImageWeb = docker.build(imagenameWeb, "-f Dockerfile.nginx","--build-arg ASSET_IMAGE=$imagenameApp .")
         }
+      }
+    }
     stage('Push Images') {
       steps{
         script {
