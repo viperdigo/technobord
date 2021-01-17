@@ -36,7 +36,6 @@ pipeline {
         script {
           docker.withRegistry( registryUrl, registryCredential ) {
             dockerImageApp.push("$BUILD_NUMBER")
-            dockerImageWeb.push("$BUILD_NUMBER")
 
             sh "docker push $imagenameWeb:$BUILD_NUMBER"
             sh "docker push $imagenameWeb:latest"
