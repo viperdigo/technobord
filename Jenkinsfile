@@ -26,7 +26,7 @@ pipeline {
     stage('Building Web Image') {
           steps{
             script {
-              dockerImageWeb = docker.build imagename -f Dockerfile.nginx ASSET_IMAGE=imagenameWeb
+              sh "docker build -f Dockerfile.nginx -t $imagenameWeb --build-arg ASSET_IMAGE=imagenameApp ."
             }
           }
         }
