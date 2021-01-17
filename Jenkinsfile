@@ -24,20 +24,22 @@ pipeline {
       }
     }
     stage('Building Web Image') {
-      steps{
-        script {
-          dockerImageWeb = docker.build(imagenameWeb, "-f Dockerfile.nginx","--build-arg ASSET_IMAGE=$imagenameApp .")
+          steps{
+            script {
+              sh "docker build -f Dockerfile.nginx -t $imagenameWeb:$BUILD_NUMBER --build-arg ASSET_IMAGE=$imagenameApp ."
+              sh "docker build -f Dockerfile.nginx -t $imagenameWeb:latest --build-arg ASSET_IMAGE=$imagenameApp ."
+            }
+          }
         }
-      }
-    }
     stage('Push Images') {
       steps{
         script {
           docker.withRegistry( registryUrl, registryCredential ) {
             dockerImageApp.push("$BUILD_NUMBER")
             dockerImageWeb.push("$BUILD_NUMBER")
-            dockerImageApp.push('latest')
-            dockerImageWeb.push('latest')
+
+            sh "docker push $imagenameWeb:$BUILD_NUMBER"
+            sh "docker push $imagenameWeb:latest"
           }
         }
       }
