@@ -27,11 +27,6 @@ header('Content-type: text/html; charset=UTF-8');
 define("NOME_SISTEMA", "Technobord");
 
 /* Constantes de Ambiente (Produção, Teste e Extranet)*/
-//define("PRD_HOST","us-cdbr-iron-east-05.cleardb.net");
-//define("PRD_BD","heroku_69d5d4c53791faa");
-//define("PRD_USER","bf6335bb24954b");
-//define("PRD_PASS","d1c109e0");
-
 define("PRD_HOST","mysql");
 define("PRD_BD","technobord");
 define("PRD_USER","root");
