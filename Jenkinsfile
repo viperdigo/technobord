@@ -26,8 +26,8 @@ pipeline {
     stage('Building Web Image') {
           steps{
             script {
-              sh "docker build -f Dockerfile.nginx -t $imagenameWeb:$BUILD_NUMBER --build-arg ASSET_IMAGE=$imagenameApp ."
-              sh "docker build -f Dockerfile.nginx -t $imagenameWeb:latest --build-arg ASSET_IMAGE=$imagenameApp ."
+              sh "docker build -f Dockerfile.nginx -t $imagenameWeb:$BUILD_NUMBER ."
+              sh "docker build -f Dockerfile.nginx -t $imagenameWeb:latest ."
             }
           }
         }
