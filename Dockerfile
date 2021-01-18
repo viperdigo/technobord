@@ -1,19 +1,23 @@
-FROM php:7.2-fpm-alpine
+FROM php:7.4.14-fpm-alpine
 
 WORKDIR /var/www
 
 COPY . .
 
-# Override Docker configuration: listen on Unix socket instead of TCP
-RUN sed -i "s|listen = 9000|listen = /var/run/php/fpm.sock\nlisten.mode = 0666|" /usr/local/etc/php-fpm.d/zz-docker.conf
+RUN apk update --no-cache \
+&& apk add \
+icu-dev \
+oniguruma-dev \
+tzdata
 
-# Use the default production configuration
-RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+RUN docker-php-ext-install intl
 
-# Install dependencies
-RUN set -xe \
-    && apk add --no-cache bash icu-dev \
-    && docker-php-ext-install pdo pdo_mysql intl pcntl
+RUN docker-php-ext-install pcntl
+
+RUN docker-php-ext-install pdo_mysql
+
+RUN docker-php-ext-install mbstring
+
+RUN rm -rf /var/cache/apk/*
 
 CMD ["php-fpm"]
-
