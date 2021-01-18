@@ -2,8 +2,8 @@
 pipeline {
   environment {
     gitRepositoryUrl = "https://github.com/viperdigo/technobord.git"
-    imagenameApp = "registry.rad.app.br/technobord"
-    imagenameWeb = "registry.rad.app.br/technobord-nginx"
+    imagenameApp = "registry.rad.app.br/technobord-app"
+    imagenameWeb = "registry.rad.app.br/technobord-web"
     registryUrl = "https://registry.rad.app.br"
     registryCredential = 'registry-credentials'
     dockerImageApp = ''
