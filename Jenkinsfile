@@ -43,13 +43,5 @@ pipeline {
         }
       }
     }
-    stage('Remove Unused Docker Image') {
-      steps{
-        sh "docker rmi $imagenameApp:$BUILD_NUMBER"
-        sh "docker rmi $imagenameWeb:$BUILD_NUMBER"
-         sh "docker rmi $imagenameApp:latest"
-         sh "docker rmi $imagenameWeb:latest"
-      }
-    }
   }
 }
