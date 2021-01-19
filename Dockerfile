@@ -18,6 +18,8 @@ RUN docker-php-ext-install pdo_mysql
 
 RUN docker-php-ext-install mbstring
 
+RUN sed -i "s|listen = 9000|listen = /var/run/php/fpm.sock\nlisten.mode = 0666|" /usr/local/etc/php-fpm.d/zz-docker.conf
+
 RUN rm -rf /var/cache/apk/*
 
 CMD ["php-fpm"]

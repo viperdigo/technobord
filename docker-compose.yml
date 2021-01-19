@@ -1,0 +1,19 @@
+version: "3.2"
+services:
+    web:
+        image: technobord-nginx
+        ports:
+            - 80:80
+        links:
+            - app
+        volumes:
+            -   phpsocket:/var/run/php
+            -   technobord-app:/var/www
+    app:
+        image: technobord
+        volumes:
+            -   phpsocket:/var/run/php
+            -   technobord-app:/var/www
+volumes:
+    phpsocket:
+    technobord-app:
